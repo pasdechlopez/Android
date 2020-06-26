@@ -1,3 +1,9 @@
 <resources>
   <string name="app_name">My Application</string>
+  <string name="add1">+1</string>
+  <string name="add2">+2</string>
+  <string name="subtract3">-3</string>
+  <string name="current_value">Current Value: </string>
+  <string name="drop_value">Сброс!</string>
+  <string name="init_value">0</string>
 </resources>
