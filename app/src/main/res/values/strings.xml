@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GitApp</string>
+    <string name="add1">GET USERS</string>
+    <string name="id">"Id: %1s"</string>
+    <string name="login">Login: %1$s</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="search">search user by login...</string>
+    <string name="search_button">Search!</string>
+</resources>

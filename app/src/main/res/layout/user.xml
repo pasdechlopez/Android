@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wrapper"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:paddingVertical="16dp"
+    android:paddingLeft="32dp"
+    >
+
+
+    <ImageView
+        android:id="@+id/user_image"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginRight="32dp"
+        android:paddingBottom="0dp" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/user_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp"
+            tools:text="ssssssssssss" />
+
+        <TextView
+            android:id="@+id/user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ellipsize="end"
+
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp"
+            tools:text="id: 131" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/user_followers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ellipsize="end"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16dp"
+        android:layout_marginLeft="32dp"
+        tools:text="ssss" />
+</LinearLayout>
