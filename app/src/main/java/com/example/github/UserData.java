@@ -1,6 +1,7 @@
 package com.example.github;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -9,6 +10,17 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "UsersData")
 public
 class UserData {
+    public static final DiffUtil.ItemCallback<UserData> CALLBACK = new DiffUtil.ItemCallback<UserData>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull UserData oldItem, @NonNull UserData newItem) {
+            return false;
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull UserData oldItem, @NonNull UserData newItem) {
+            return false;
+        }
+    };
     @PrimaryKey(autoGenerate = true)
     public int number;
     @NonNull

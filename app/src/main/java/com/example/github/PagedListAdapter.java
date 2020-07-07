@@ -16,9 +16,8 @@ public class PagedListAdapter extends androidx.paging.PagedListAdapter<UserData,
     @NonNull
     @Override
     public UsersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main, parent, false);
-        UsersViewHolder holder = new UsersViewHolder(view);
-        return holder;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user, parent, false);
+        return new UsersViewHolder(view);
     }
 
     @Override

@@ -10,11 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+
+import com.example.github.myDataSource.DataSource;
 
 import java.util.List;
-import java.util.concurrent.Executor;
 
 public class MainActivity extends AppCompatActivity implements IMainView {
 
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     private GithubAdapter adapter;
     private RecyclerView recycler;
     private String id;
-    private Executor executor ;
+    private PagedListAdapter pagedListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,23 +38,38 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     private void initView() {
         initToolbar();
-        initPagedList();
 //        initPresenter();
-        initRecycler();
-
+//        initRecycler();
+        initPagedList();
     }
 
     private void initPagedList() {
-        MyPositionalDataSource dataSource = new MyPositionalDataSource(new UserStorage());
+        DataSource dataSource = new DataSource(new UserStorage());
+        MainThreadExecutor executor = new MainThreadExecutor();
         PagedList.Config config = new PagedList.Config.Builder()
                 .setEnablePlaceholders(false)
-                .setPageSize(20)
-                .build();
-        PagedList<UserData> pagedList = new PagedList.Builder<>(dataSource, config)
-                .setFetchExecutor(executor)
-                .setNotifyExecutor(executor)
+                .setPageSize(19)
                 .build();
 
+        PagedList<UserData> pagedList = new PagedList.Builder<>(dataSource, config)
+                .setNotifyExecutor(executor)
+                .setFetchExecutor(executor)
+                .build();
+
+        initPagedListAdapter(pagedList);
+    }
+
+    private void initPagedListAdapter(PagedList<UserData> pagedList) {
+        pagedListAdapter = new PagedListAdapter(UserData.CALLBACK);
+        pagedListAdapter.submitList(pagedList);
+        initRecycler2(pagedListAdapter);
+    }
+
+    private void initRecycler2(PagedListAdapter pagedListAdapter) {
+        recycler = findViewById(R.id.recycler);
+        recycler.setAdapter(pagedListAdapter);
+        LinearLayoutManager layout = new LinearLayoutManager(this);
+        recycler.setLayoutManager(layout);
     }
 
     private void initPresenter() {
@@ -91,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         adapter.setUsers(payload);
     }
 
-
     @Override
     public void onInitialLoadingFailure(String message) {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
@@ -111,5 +124,4 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         TextView title = findViewById(R.id.toolbar_title);
         title.setText(getString(R.string.app_name));
     }
-
 }

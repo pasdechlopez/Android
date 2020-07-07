@@ -4,8 +4,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.paging.PagedList;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.github.modules.network.IApi;
 import com.example.github.modules.network.NetworkModule;
+import com.example.github.myDataSource.DataSource;
+
+import java.util.concurrent.Executor;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -18,10 +25,18 @@ class MainPresenter {
     private final CompositeDisposable disposables = new CompositeDisposable();
     IMainView view;
     private boolean fetching = false;
+    private Executor executor;
+    private PagedListAdapter pagedListAdapter;
+
 
     public MainPresenter(IMainView view, Context context) {
         this.view = view;
-        initDB(context);
+//        initDB(context);
+        initPagedList(context);
+    }
+
+    private void initPagedList(Context context) {
+
     }
 
     private void initDB(Context context) {
