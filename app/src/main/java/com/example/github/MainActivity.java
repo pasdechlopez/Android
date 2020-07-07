@@ -44,17 +44,36 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     }
 
     private void initPagedList() {
-        DataSource dataSource = new DataSource(new UserStorage());
+        DataSource dataSource = new DataSource(new UserStorage(this));
+
+        UsersDB usersDB = UsersDB.getInstance(this);
+        usersDB.userDAO().selectAll();
+
         MainThreadExecutor executor = new MainThreadExecutor();
         PagedList.Config config = new PagedList.Config.Builder()
                 .setEnablePlaceholders(false)
                 .setPageSize(19)
                 .build();
 
+//        PagedList.BoundaryCallback boundaryCallback = new PagedList.BoundaryCallback() {
+//            @Override
+//            public void onZeroItemsLoaded() {
+//                super.onZeroItemsLoaded();
+//
+//            }
+//
+//            @Override
+//            public void onItemAtEndLoaded(@NonNull Object itemAtEnd) {
+//                super.onItemAtEndLoaded(itemAtEnd);
+//            }
+//        };
+
         PagedList<UserData> pagedList = new PagedList.Builder<>(dataSource, config)
+//                .setBoundaryCallback(boundaryCallback)
                 .setNotifyExecutor(executor)
                 .setFetchExecutor(executor)
                 .build();
+
 
         initPagedListAdapter(pagedList);
     }

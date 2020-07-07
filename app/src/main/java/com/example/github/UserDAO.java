@@ -10,12 +10,13 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 @Dao
 public interface UserDAO {
 
     @Query("SELECT * FROM UsersData")
-    Flowable<List<UserData>> selectAll();
+    Single<List<UserData>> selectAll();
 
     @Query("SELECT * FROM UsersData WHERE id = :id")
     UserData getUserByID(String id);

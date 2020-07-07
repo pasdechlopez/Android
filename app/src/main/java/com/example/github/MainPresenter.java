@@ -47,10 +47,8 @@ class MainPresenter {
                         observeOn(AndroidSchedulers.mainThread()).
                         subscribe(userData -> {
                             if (!userData.isEmpty()) {
-                                Log.i("PRESENTER INITDB:", "data in DB ");
                                 view.onInitialLoadingSuccess(userData);
                             } else {
-                                Log.i("PRESENTER INITDB:", "getUsers ");
                                 getUsers();
                             }
                         }));
@@ -103,20 +101,6 @@ class MainPresenter {
 //                            view.onInitialLoadingFailure(throwable.getMessage());
 //                        }
 //                ));
-    }
-
-    @SuppressLint("CheckResult")
-    public void loadNextPage(String id) {
-
-//        if (!isInDB(id)) {
-//            loadNextUsers(id);
-//        } else {
-//            getUsersFromDB(id);
-//        }
-    }
-
-    private boolean isInDB(String id) {
-        return true;
     }
 
     private void getUsersFromDB(String id) {
