@@ -14,9 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity2">
-        </activity>
+        <activity android:name=".MVVM.MainActivity2"></activity>
         <activity android:name=".FollowersActivity" />
+        <activity android:name=".Corona.CoronaActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,6 +1,6 @@
 package com.example.github.modules.network;
 
-import com.example.github.UserData;
+import com.example.github.Room.UserData;
 
 import java.util.List;
 
@@ -16,10 +16,6 @@ public interface IApi {
 
     @GET
     Single<UserData> getUser(@Url String url);
-
-
-    //    @GET("users")
-//    Single<List<User>> getUsers();
 
     @GET("users")
     Single<List<UserData>> getUsers(@Query("since") String id);

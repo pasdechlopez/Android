@@ -11,7 +11,13 @@ import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.github.myDataSource.DataSource;
+import com.example.github.Corona.CoronaListAdapter;
+import com.example.github.Corona.CoronaPresenter;
+import com.example.github.Corona.DoubleRegion;
+import com.example.github.Room.UserData;
+import com.example.github.Room.UserStorage;
+import com.example.github.modules.network.models.Region;
+import com.example.github.Room.DataSource;
 
 import java.util.List;
 
@@ -19,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     private MainPresenter presenter;
     private GithubAdapter adapter;
+    private CoronaListAdapter coronaListAdapter;
     private RecyclerView recycler;
     private String id;
     private PagedListAdapter pagedListAdapter;
@@ -38,43 +45,46 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     private void initView() {
         initToolbar();
+//        initCorona();
 //        initPresenter();
 //        initRecycler();
         initPagedList();
+
     }
+
+
+    @Override
+    public void onInitialLoadingSuccess(List<UserData> payload) {
+
+    }
+
+    @Override
+    public void onInitialLoadingFailure(String message) {
+
+    }
+
+    @Override
+    public void loadNextPageSuccess(List<UserData> users) {
+
+    }
+
+    public void setCoronaData(List<DoubleRegion> regions) {
+        coronaListAdapter.setItems(regions);
+    }
+
 
     private void initPagedList() {
         DataSource dataSource = new DataSource(new UserStorage(this));
-
-        UsersDB usersDB = UsersDB.getInstance(this);
-        usersDB.userDAO().selectAll();
-
         MainThreadExecutor executor = new MainThreadExecutor();
         PagedList.Config config = new PagedList.Config.Builder()
                 .setEnablePlaceholders(false)
                 .setPageSize(19)
                 .build();
 
-//        PagedList.BoundaryCallback boundaryCallback = new PagedList.BoundaryCallback() {
-//            @Override
-//            public void onZeroItemsLoaded() {
-//                super.onZeroItemsLoaded();
-//
-//            }
-//
-//            @Override
-//            public void onItemAtEndLoaded(@NonNull Object itemAtEnd) {
-//                super.onItemAtEndLoaded(itemAtEnd);
-//            }
-//        };
-
         PagedList<UserData> pagedList = new PagedList.Builder<>(dataSource, config)
-//                .setBoundaryCallback(boundaryCallback)
                 .setNotifyExecutor(executor)
                 .setFetchExecutor(executor)
                 .build();
-
-
         initPagedListAdapter(pagedList);
     }
 
@@ -118,29 +128,9 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         return adapter.getID();
     }
 
-    @Override
-    public void onInitialLoadingSuccess(List<UserData> payload) {
-//        id = adapter.getID();
-        adapter.setUsers(payload);
-    }
-
-    @Override
-    public void onInitialLoadingFailure(String message) {
-        Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
-        toast.show();
-        Log.i("ERROR MESSAGE: ", message);
-    }
-
-    @Override
-    public void loadNextPageSuccess(List<UserData> users) {
-        String currentID = adapter.getID();
-        if (currentID != null && !currentID.equals(id)) {
-            adapter.addUsers(users);
-        }
-    }
-
     private void initToolbar() {
         TextView title = findViewById(R.id.toolbar_title);
         title.setText(getString(R.string.app_name));
     }
+
 }

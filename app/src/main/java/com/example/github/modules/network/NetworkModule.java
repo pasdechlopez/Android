@@ -20,27 +20,38 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkModule {
     private static final String AUTHORIZATION_HEADER = "Authorization";
     private static final String API_GITHUB_BASE_URL = "https://api.github.com/";
+    private static final String API_CORONA_BASE_URL = "https://api.apify.com/";
 
     private static final String AUTH_TOKEN = "token ab09e758eeba73cd54937ed1f22eeb81c6f9d250";
 
     private static IApi apiInstance = null;
 
+    private static CoronaApi coronaApiInstance = null;
+
     public static IApi getApi() {
         synchronized (NetworkModule.class) {
             if (apiInstance == null) {
-                apiInstance = createRetrofit().create(IApi.class);
+                apiInstance = createRetrofit(API_GITHUB_BASE_URL).create(IApi.class);
             }
-
             return apiInstance;
         }
     }
 
-    private static Retrofit createRetrofit() {
+    public static CoronaApi getCoronaApi() {
+        synchronized (NetworkModule.class) {
+            if (coronaApiInstance == null) {
+                coronaApiInstance = createRetrofit(API_CORONA_BASE_URL).create(CoronaApi.class);
+            }
+            return coronaApiInstance;
+        }
+    }
+
+    private static Retrofit createRetrofit(String baseUrl) {
         return new Retrofit.Builder()
                 .addCallAdapterFactory(createRxCallAdapterFactory())
                 .addConverterFactory(createConverterFactory())
-                .baseUrl(API_GITHUB_BASE_URL)
-                .client(createHttpClient())
+                .baseUrl(baseUrl)
+                .client(createHttpClient(baseUrl))
                 .build();
     }
 
@@ -48,13 +59,17 @@ public class NetworkModule {
         return RxJava2CallAdapterFactory.create();
     }
 
-    private static OkHttpClient createHttpClient() {
-        return new OkHttpClient.Builder()
+    private static OkHttpClient createHttpClient(String baseUrl) {
+        final OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(createAuthInterceptor())
                 .cookieJar(createCookieJar())
-                .followRedirects(false)
-                .build();
+                .followRedirects(false);
+
+        if (baseUrl.equals(API_GITHUB_BASE_URL)) {
+            builder.addInterceptor(createAuthInterceptor());
+        }
+
+        return builder.build();
     }
 
     private static Interceptor createAuthInterceptor() {

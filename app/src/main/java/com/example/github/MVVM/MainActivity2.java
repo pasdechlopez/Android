@@ -1,4 +1,4 @@
-package com.example.github;
+package com.example.github.MVVM;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,22 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.github.GithubAdapter;
+import com.example.github.Room.UserData;
 import com.example.github.databinding.ActivityMain2Binding;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.disposables.Disposables;
 
 public class MainActivity2 extends AppCompatActivity {
 

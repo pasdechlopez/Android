@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.github.Room.UserData;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +41,6 @@ public class GithubAdapter extends RecyclerView.Adapter<UsersViewHolder> {
     public String getID() {
         return usersList.size() > 0 ? usersList.get(usersList.size() - 1).id : null;
     }
-
 
     @NonNull
     @Override

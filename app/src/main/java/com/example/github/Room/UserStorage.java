@@ -1,6 +1,7 @@
-package com.example.github;
+package com.example.github.Room;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.paging.PositionalDataSource;
 
@@ -30,28 +31,38 @@ public class UserStorage {
                     @Override
                     public void onSuccess(List<UserData> list) {
                         if (list.isEmpty()) {
-                            NetworkModule.getApi().getUsers(null).subscribeOn(Schedulers.io())
+                            NetworkModule.getApi().getUsers(null)
+                                    .subscribeOn(Schedulers.io())
+                                    .map(users -> {
+                                        usersDB.userDAO().insertAll(users);
+                                        return users;
+                                    })
                                     .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe()
+                                    .subscribe(new DisposableSingleObserver<List<UserData>>() {
+                                        @Override
+                                        public void onSuccess(List<UserData> list) {
+                                            callback.onResult(list, 0);
+                                            id = list.get(list.size() - 1).id;
+                                        }
+
+                                        @Override
+                                        public void onError(Throwable e) {
+                                            Log.i("Init Load data error:", e.getMessage());
+                                        }
+                                    });
+
+                        } else {
+                            callback.onResult(list, 0);
+                            id = list.get(list.size() - 1).id;
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.i("Init DB req error:", e.getMessage());
                     }
                 });
-        NetworkModule.getApi().getUsers(null).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new DisposableSingleObserver<List<UserData>>() {
-            @Override
-            public void onSuccess(List<UserData> list) {
-                callback.onResult(list, 0);
-                id = list.get(list.size() - 1).id;
-            }
 
-            @Override
-            public void onError(Throwable e) {
-            }
-        });
     }
 
     public void loadData(int requestedStartPosition, int requestedLoadSize, PositionalDataSource.LoadRangeCallback<UserData> callback) {
@@ -59,7 +70,7 @@ public class UserStorage {
             @Override
             public void onSuccess(List<UserData> list) {
                 callback.onResult(list);
-                id = list.get(list.size() - 1).id;
+
             }
 
             @Override

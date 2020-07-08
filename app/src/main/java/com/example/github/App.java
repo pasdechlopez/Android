@@ -5,6 +5,7 @@ import android.content.Context;
 
 import androidx.room.Room;
 
+import com.example.github.Room.UsersDB;
 import com.facebook.stetho.Stetho;
 
 public class App extends Application {

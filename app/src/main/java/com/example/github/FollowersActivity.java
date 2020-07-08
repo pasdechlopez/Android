@@ -7,22 +7,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.github.Corona.DoubleRegion;
+import com.example.github.Room.UserData;
 import com.example.github.modules.network.IApi;
 import com.example.github.modules.network.NetworkModule;
+import com.example.github.modules.network.models.Region;
 
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FollowersActivity extends AppCompatActivity implements IMainView {
 
@@ -112,6 +111,12 @@ public class FollowersActivity extends AppCompatActivity implements IMainView {
     public void loadNextPageSuccess(List<UserData> users) {
 
     }
+
+    @Override
+    public void setCoronaData(List<DoubleRegion> infectedByRegion) {
+
+    }
+
 }
 
 

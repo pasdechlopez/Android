@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+
+        <ImageView
+            android:id="@+id/corona_backbutton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/abc_vector_test" />
+
+        <TextView
+            android:id="@+id/corona_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="32dp" />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/corona_activity_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            tools:text="First Activity" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/border">
+
+            <TextView
+                android:id="@+id/corona_activity_desc"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                tools:text="Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. This integer need not remain consistent from. " />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="350dp"
+                android:layout_marginTop="35dp"
+                android:scaleX="-1"
+                android:src="@drawable/abc_vector_test" />
+        </FrameLayout>
+
+        <item
+            android:bottom="1dp"
+            android:top="1dp">
+
+            <shape android:shape="rectangle">
+
+                <stroke
+                    android:width="1dp"
+                    android:color="#000" />
+
+                <solid android:color="#FFFFFF" />
+            </shape>
+        </item>
+
+        <TextView
+            android:id="@+id/corona_activity_name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="First Activity" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginVertical="5dp">
+
+            <TextView
+                android:id="@+id/corona_activity_desc1"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                tools:text="Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. This integer need not remain consistent from. " />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="350dp"
+                android:layout_marginTop="35dp"
+                android:scaleX="-1"
+                android:src="@drawable/abc_vector_test" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/corona_activity_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="First Activity" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp">
+
+            <TextView
+                android:id="@+id/corona_activity_desc2"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                tools:text="Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. This integer need not remain consistent from. " />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="350dp"
+                android:layout_marginTop="35dp"
+                android:scaleX="-1"
+                android:src="@drawable/abc_vector_test" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/corona_activity_name3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="First Activity" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp">
+
+            <TextView
+                android:id="@+id/corona_activity_desc3"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                tools:text="Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no information used in equals comparisons on the object is modified. This integer need not remain consistent from. " />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="350dp"
+                android:layout_marginTop="35dp"
+                android:scaleX="-1"
+                android:src="@drawable/abc_vector_test" />
+        </FrameLayout>
+
+    </LinearLayout>
+</LinearLayout>

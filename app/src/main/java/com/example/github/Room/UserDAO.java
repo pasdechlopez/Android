@@ -1,4 +1,4 @@
-package com.example.github;
+package com.example.github.Room;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -7,9 +7,6 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
-import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 @Dao

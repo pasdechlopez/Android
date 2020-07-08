@@ -1,26 +1,26 @@
-package com.example.github;
+package com.example.github.Room;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "UsersData")
 public
 class UserData {
     public static final DiffUtil.ItemCallback<UserData> CALLBACK = new DiffUtil.ItemCallback<UserData>() {
+
         @Override
         public boolean areItemsTheSame(@NonNull UserData oldItem, @NonNull UserData newItem) {
             return false;
         }
-
         @Override
         public boolean areContentsTheSame(@NonNull UserData oldItem, @NonNull UserData newItem) {
             return false;
         }
     };
+
     @PrimaryKey(autoGenerate = true)
     public int number;
     @NonNull
@@ -32,19 +32,10 @@ class UserData {
     @ColumnInfo(name = "followers")
     public String followers;
 
-
     public UserData(String id, String login, String followers, String avatar_url) {
         this.id = id;
         this.login = login;
         this.avatar_url = avatar_url;
         this.followers = followers;
-//        this.avatar_url = user.avatar_url;
-//        this.followers = user.followers;
     }
-
-//    @Ignore
-//    public UserData(String followers, String avatar_url) {
-//        this.followers = followers;
-//        this.avatar_url = avatar_url;
-//    }
 }

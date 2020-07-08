@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
+import com.example.github.Room.UserData;
+
 public class PagedListAdapter extends androidx.paging.PagedListAdapter<UserData, UsersViewHolder> {
 
     protected PagedListAdapter(DiffUtil.ItemCallback<UserData> dataItemCallback) {

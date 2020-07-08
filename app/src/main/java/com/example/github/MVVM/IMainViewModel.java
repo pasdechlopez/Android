@@ -1,9 +1,10 @@
-package com.example.github;
+package com.example.github.MVVM;
+
+import com.example.github.Room.UserData;
 
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.Single;
 
 public interface IMainViewModel {
     Observable<List<UserData>> getUsersObservable();

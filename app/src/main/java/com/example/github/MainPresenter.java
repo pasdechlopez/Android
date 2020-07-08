@@ -4,13 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.paging.PagedList;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.example.github.Room.UsersDB;
 import com.example.github.modules.network.IApi;
 import com.example.github.modules.network.NetworkModule;
-import com.example.github.myDataSource.DataSource;
 
 import java.util.concurrent.Executor;
 
