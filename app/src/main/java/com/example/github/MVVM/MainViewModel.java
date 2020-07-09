@@ -31,23 +31,5 @@ public class MainViewModel implements IMainViewModel {
                 .subscribe(users -> usersObservable.onNext(users), throwable -> {
                         }
                 );
-    }//    public Observable<List<User>> getUsers() {
-//        return NetworkModule
-//                .getApi()
-//                .getUsers()
-//                .repeat(5000)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn()
-//    };
-
-//    @Override
-//    public Observable<List<User>> getUsersObservable() {
-//
-//        return NetworkModule
-//                .getApi()
-//                .getUsers(null)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread());
-//    }
-
+    }
 }

@@ -31,25 +31,7 @@ public class UserStorage {
                     @Override
                     public void onSuccess(List<UserData> list) {
                         if (list.isEmpty()) {
-                            NetworkModule.getApi().getUsers(null)
-                                    .subscribeOn(Schedulers.io())
-                                    .map(users -> {
-                                        usersDB.userDAO().insertAll(users);
-                                        return users;
-                                    })
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(new DisposableSingleObserver<List<UserData>>() {
-                                        @Override
-                                        public void onSuccess(List<UserData> list) {
-                                            callback.onResult(list, 0);
-                                            id = list.get(list.size() - 1).id;
-                                        }
-
-                                        @Override
-                                        public void onError(Throwable e) {
-                                            Log.i("Init Load data error:", e.getMessage());
-                                        }
-                                    });
+                            getUsers(callback);
 
                         } else {
                             callback.onResult(list, 0);
@@ -63,6 +45,28 @@ public class UserStorage {
                     }
                 });
 
+    }
+
+    private void getUsers(PositionalDataSource.LoadInitialCallback<UserData> callback) {
+        NetworkModule.getApi().getUsers(null)
+                .subscribeOn(Schedulers.io())
+                .map(users -> {
+                    usersDB.userDAO().insertAll(users);
+                    return users;
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DisposableSingleObserver<List<UserData>>() {
+                    @Override
+                    public void onSuccess(List<UserData> list) {
+                        callback.onResult(list, 0);
+                        id = list.get(list.size() - 1).id;
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("Init Load data error:", e.getMessage());
+                    }
+                });
     }
 
     public void loadData(int requestedStartPosition, int requestedLoadSize, PositionalDataSource.LoadRangeCallback<UserData> callback) {

@@ -2,28 +2,24 @@ package com.example.github.Corona;
 
 import com.example.github.modules.network.models.Region;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DoubleRegion {
+    public static final int FIRST_REGION_POS = 0;
+    public static final int SECOND_REGION_POS = 1;
 
-    private Region region;
-    private Region region1;
+    private List<Region> regionList = new ArrayList<>(2);
 
-    public DoubleRegion(Region region, Region region1) {
-        this.region = region;
-        this.region1 = region1;
+    public List<Region> getRegionList() {
+        return regionList;
     }
 
-    public String getRegionName() {
-        return region.getRegion();
-    }
-    public int getRegionInfected() {
-        return region.getInfected();
+    public void addRegion(Region region) {
+        regionList.add(region);
     }
 
-    public int getRegion1Infected() {
-        return region.getInfected();
-    }
-
-    public String getRegion1Name() {
-        return region1.getRegion();
+    public int getRegionsSize() {
+        return regionList.size();
     }
 }

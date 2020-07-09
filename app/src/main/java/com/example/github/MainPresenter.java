@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.github.PagedLib.PagedListAdapter;
 import com.example.github.Room.UsersDB;
 import com.example.github.modules.network.IApi;
 import com.example.github.modules.network.NetworkModule;
@@ -83,20 +84,6 @@ class MainPresenter {
                             )
             );
         }
-//        disposables.add(api.getUsers(id).subscribeOn(Schedulers.io()).subscribe(us))
-//                .subscribe(us);
-//                .subscribe(users -> {
-//                    usersDB.userDAO().insertAll(users);
-//                    Log.i("User + id: ", usersDB.userDAO().selectAll().toString());
-//                    return users;
-//                });
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(
-//                        users -> view.onInitialLoadingSuccess(users),
-//                        throwable -> {
-//                            view.onInitialLoadingFailure(throwable.getMessage());
-//                        }
-//                ));
     }
 
     private void getUsersFromDB(String id) {

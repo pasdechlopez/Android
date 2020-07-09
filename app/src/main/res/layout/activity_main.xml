@@ -9,35 +9,41 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimaryDark"
+        android:padding="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:paddingVertical="4dp">
 
 
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="start"
                 android:textColor="@color/white"
                 android:textSize="32sp" />
 
-            <TextView
-                android:id="@+id/toolbar_subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                tools:text="deeeeeeeee" />
+            <ImageButton
+                android:id="@+id/button_up"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="160dp"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:tint="@color/white" />
+
 
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
-    <com.example.github.CustomViewGroup
+    <com.example.github.Corona.CoronaView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <!--    <RelativeLayout-->
@@ -75,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:padding="10dp" />
+
+        />
 
 </LinearLayout>

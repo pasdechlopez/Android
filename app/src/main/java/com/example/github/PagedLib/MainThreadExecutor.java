@@ -1,4 +1,4 @@
-package com.example.github;
+package com.example.github.PagedLib;
 
 import android.os.Handler;
 import android.os.Looper;

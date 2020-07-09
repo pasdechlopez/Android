@@ -1,9 +1,8 @@
 package com.example.github;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,13 +10,13 @@ import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.github.Corona.CoronaListAdapter;
-import com.example.github.Corona.CoronaPresenter;
+import com.example.github.Corona.CoronaViewAdapter;
 import com.example.github.Corona.DoubleRegion;
+import com.example.github.PagedLib.MainThreadExecutor;
+import com.example.github.PagedLib.PagedListAdapter;
+import com.example.github.Room.DataSource;
 import com.example.github.Room.UserData;
 import com.example.github.Room.UserStorage;
-import com.example.github.modules.network.models.Region;
-import com.example.github.Room.DataSource;
 
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     private MainPresenter presenter;
     private GithubAdapter adapter;
-    private CoronaListAdapter coronaListAdapter;
+    private CoronaViewAdapter coronaViewAdapter;
     private RecyclerView recycler;
     private String id;
     private PagedListAdapter pagedListAdapter;
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     @Override
     protected void onDestroy() {
-        presenter.onDestroy();
+//        presenter.onDestroy();
         super.onDestroy();
     }
 
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     }
 
     public void setCoronaData(List<DoubleRegion> regions) {
-        coronaListAdapter.setItems(regions);
+        coronaViewAdapter.setItems(regions);
     }
 
 
@@ -116,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements IMainView {
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (!recycler.canScrollVertically(1)) {
-                    Log.i("STATE_CHANGE", String.valueOf(newState));
                     presenter.getUsers(adapter.getID());
                 }
             }
@@ -131,6 +129,17 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     private void initToolbar() {
         TextView title = findViewById(R.id.toolbar_title);
         title.setText(getString(R.string.app_name));
+        initUpButton();
     }
 
+
+    private void initUpButton() {
+        ImageButton backButton = findViewById(R.id.button_up);
+        backButton.setOnClickListener(v -> scrollUp());
+        backButton.setRotation(-90);
+    }
+
+    private void scrollUp() {
+        recycler.smoothScrollToPosition(0);
+    }
 }

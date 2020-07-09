@@ -14,66 +14,79 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimaryDark">
 
-        <ImageButton
-            android:id="@+id/button_back"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginRight="4dp"
-            android:background="@color/transparent"
-            android:src="@drawable/angry"
-
-            android:tint="@color/white" />
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/white"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="12dp"
-            android:textSize="24dp"
-            tools:text="deeeeeeeee" />
+            android:orientation="horizontal"
 
+            android:paddingVertical="10dp">
 
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="4dp"
+                android:background="@color/transparent"
+                android:src="@drawable/angry"
+                android:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                android:gravity="start"
+                android:layout_weight="1"
+                tools:text="deeeeeeeee" />
+
+            <ImageButton
+                android:id="@+id/button_up"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/transparent"
+                android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                android:tint="@color/white" />
+
+        </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
-<!--        <RelativeLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:paddingVertical="8dp"-->
-<!--            android:layout_height="wrap_content">-->
+    <!--        <RelativeLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:paddingVertical="8dp"-->
+    <!--            android:layout_height="wrap_content">-->
 
 
-<!--            <EditText-->
-<!--                android:id="@+id/search_input"-->
-<!--                android:layout_width="200dp"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:gravity="center_horizontal"-->
-<!--                android:layout_marginRight="11dp"-->
-<!--                android:hint="@string/search" />-->
+    <!--            <EditText-->
+    <!--                android:id="@+id/search_input"-->
+    <!--                android:layout_width="200dp"-->
+    <!--                android:layout_height="50dp"-->
+    <!--                android:layout_centerHorizontal="true"-->
+    <!--                android:layout_centerVertical="true"-->
+    <!--                android:gravity="center_horizontal"-->
+    <!--                android:layout_marginRight="11dp"-->
+    <!--                android:hint="@string/search" />-->
 
-<!--            <Button-->
-<!--                android:id="@+id/search_button"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:layout_toRightOf="@id/search_input"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:height="50dp"-->
-<!--                android:background="@color/colorPrimaryDark"-->
-<!--                android:text="@string/search_button"-->
-<!--                android:textColor="@color/white" />-->
+    <!--            <Button-->
+    <!--                android:id="@+id/search_button"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="50dp"-->
+    <!--                android:layout_toRightOf="@id/search_input"-->
+    <!--                android:layout_centerVertical="true"-->
+    <!--                android:height="50dp"-->
+    <!--                android:background="@color/colorPrimaryDark"-->
+    <!--                android:text="@string/search_button"-->
+    <!--                android:textColor="@color/white" />-->
 
-<!--        </RelativeLayout>-->
+    <!--        </RelativeLayout>-->
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:padding="10dp" />
+        android:layout_gravity="center" />
 
 </LinearLayout>

@@ -9,26 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.github.R;
-import com.example.github.modules.network.models.Region;
+import com.example.github.databinding.RegionBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoronaListAdapter extends RecyclerView.Adapter<RegionsViewHolder> {
+public class CoronaViewAdapter extends RecyclerView.Adapter<RegionsViewHolder> {
 
-    final private List<DoubleRegion> regionList;
-
-    public CoronaListAdapter() {
-        regionList = new ArrayList<>();
-    }
+    final private List<DoubleRegion> regionList = new ArrayList<>();
 
     @NonNull
     @Override
     public RegionsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.region, parent, false);
-        return new RegionsViewHolder(view);
+        RegionBinding binding = RegionBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new RegionsViewHolder(binding.getRoot());
     }
 
     @Override
@@ -47,4 +41,5 @@ public class CoronaListAdapter extends RecyclerView.Adapter<RegionsViewHolder> {
         regionList.addAll(regions);
         notifyDataSetChanged();
     }
+
 }
